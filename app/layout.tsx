@@ -1,5 +1,16 @@
 import type { Metadata } from "next";
+import { Inter, Lora } from "next/font/google";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-body",
+});
+
+const lora = Lora({
+  subsets: ["latin"],
+  variable: "--font-heading",
+});
 
 export const metadata: Metadata = {
   title: "Learn Greek with Confidence",
@@ -14,7 +25,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={`${inter.variable} ${lora.variable} antialiased`}>
+        {children}
+      </body>
     </html>
   );
 }
