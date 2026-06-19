@@ -15,7 +15,8 @@ export default function Hero() {
                 width={600}
                 height={700}
                 priority
-                className="h-auto w-full object-cover"
+                className="h-auto w-full object-cover hover:scale-[1.02]
+transition-all duration-500"
               />
             </div>
           </div>
