@@ -51,4 +51,21 @@ export const professor = {
 
     "My approach combines academic expertise with a warm, supportive teaching style that helps students build confidence and enjoy the learning process.",
   ],
+  whyChooseMe: {
+    eyebrow: "Why Choose Me",
+
+    title: "A Personalised Approach To Learning Greek",
+
+    paragraphs: [
+      "Learning a language is not just about memorising grammar rules—it is about communication, confidence, and connecting with people and culture.",
+
+      "With experience teaching students of different ages, nationalities, backgrounds, and learning goals, I understand that every learner is unique. Rather than following a one-size-fits-all method, I adapt my lessons to suit your pace, interests, and objectives.",
+
+      "As both a teacher and a writer, I have a deep appreciation for language and the ways people learn to express themselves.",
+
+      "Whether you are preparing for an exam, planning a trip to Greece, learning for family reasons, or simply pursuing a personal passion, I create lessons that are engaging, practical, and tailored specifically to you.",
+
+      "My students value not only my expertise and experience but also my patience, encouragement, and genuine enthusiasm for helping them succeed.",
+    ],
+  },
 };
