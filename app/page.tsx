@@ -5,15 +5,32 @@ import Services from "./components/Services";
 import Testimonials from "./components/Testimonials";
 import Contact from "./components/Contact";
 
+import FadeIn from "./components/FadeIn";
+
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <>
       <Hero />
-      <About />
-      <WhyChooseMe />
-      <Services />
-      <Testimonials />
-      <Contact />
-    </main>
+
+      <FadeIn>
+        <About />
+      </FadeIn>
+
+      <FadeIn>
+        <WhyChooseMe />
+      </FadeIn>
+
+      <FadeIn>
+        <Services />
+      </FadeIn>
+
+      <FadeIn>
+        <Testimonials />
+      </FadeIn>
+
+      <FadeIn>
+        <Contact />
+      </FadeIn>
+    </>
   );
 }
