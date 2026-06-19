@@ -68,4 +68,51 @@ export const professor = {
       "My students value not only my expertise and experience but also my patience, encouragement, and genuine enthusiasm for helping them succeed.",
     ],
   },
+  servicesSection: {
+    eyebrow: "Lessons & Services",
+
+    title: "Flexible Greek Lessons Tailored To You",
+
+    intro:
+      "I offer flexible Greek language lessons tailored to your needs, available both online worldwide and in person in London.",
+
+    description:
+      "Whether you are learning Greek for travel, family connections, personal interest, academic goals, or professional development, lessons are designed around your individual objectives and learning style.",
+
+    categories: [
+      {
+        title: "Lesson Formats",
+        services: [
+          "One-to-one private lessons",
+          "Small group lessons",
+          "Online lessons worldwide",
+          "In-person lessons in London",
+        ],
+      },
+
+      {
+        title: "Learning Goals",
+        services: [
+          "Greek for beginners",
+          "Conversational Greek",
+          "Intensive courses for holidays and travel",
+          "Greek for partners and family members of Greek speakers",
+        ],
+      },
+
+      {
+        title: "Exam & Specialist Preparation",
+        services: [
+          "Preparation for the Ellinomatheia examinations",
+          "Preparation for the Panhellenic examinations",
+          "Heritage Greek for bilingual and second-generation Greek speakers",
+          "Greek language and culture lessons",
+          "Tailor-made courses designed around your specific goals",
+        ],
+      },
+    ],
+
+    conclusion:
+      "Every lesson is personalised, practical, and engaging, helping you build confidence and make real progress from day one. Whether you want to order a coffee in Athens, communicate with family, pass an exam, or achieve fluency, I can help you reach your goal.",
+  },
 };
