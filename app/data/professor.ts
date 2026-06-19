@@ -115,4 +115,19 @@ export const professor = {
     conclusion:
       "Every lesson is personalised, practical, and engaging, helping you build confidence and make real progress from day one. Whether you want to order a coffee in Athens, communicate with family, pass an exam, or achieve fluency, I can help you reach your goal.",
   },
+  testimonialsSection: {
+    eyebrow: "Testimonials",
+
+    title: "What Students Say",
+  },
+  contactSection: {
+    eyebrow: "Contact",
+
+    title: "Ready To Start Your Greek Journey?",
+
+    description:
+      "Whether you are a complete beginner, preparing for an examination, reconnecting with your heritage, or planning a trip to Greece, I would be delighted to help you achieve your goals.",
+
+    buttonText: "Email Me",
+  },
 };
