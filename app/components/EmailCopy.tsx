@@ -22,7 +22,7 @@ export default function EmailCopy({ email }: EmailCopyProps) {
 
   return (
     <div className="mt-6 flex items-center justify-center gap-3">
-      <p className="text-sm text-[(--muted)] transition-colors hover:text-[(--accent)]">
+      <p className="text-sm text-[var(--muted)] transition-colors hover:text-[var(--accent)]">
         {email}{" "}
       </p>
       <div className="relative">
@@ -37,14 +37,14 @@ export default function EmailCopy({ email }: EmailCopyProps) {
         rounded-lg
         p-2
         transition-all
-        hover:bg-[(--card)]
+        hover:bg-[var(--card)]
         focus:outline-none
       "
         >
           {copied ? (
-            <Check size={18} className="text-[(--accent)]" />
+            <Check size={18} className="text-[var(--accent)]" />
           ) : (
-            <Copy size={18} className="text-[(--muted)]" />
+            <Copy size={18} className="text-[var(--muted)]" />
           )}
         </button>
 
@@ -57,7 +57,7 @@ export default function EmailCopy({ email }: EmailCopyProps) {
           -translate-x-1/2
           whitespace-nowrap
           rounded-md
-          bg-[(--foreground)]
+          bg-[var(--foreground)]
           px-2
           py-1
           text-xs

@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Inter, Lora } from "next/font/google";
 import "./globals.css";
 
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-body",
@@ -26,7 +29,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${lora.variable} antialiased`}>
-        {children}
+        <Navbar />
+
+        <main id="top">{children}</main>
+
+        <Footer />
       </body>
     </html>
   );

@@ -2,7 +2,11 @@ import { professor } from "../data/professor";
 
 export default function WhyChooseMe() {
   return (
-    <section aria-labelledby="why-choose-me-heading" className="py-20">
+    <section
+      aria-labelledby="why-choose-me-heading"
+      id="why-choose-me"
+      className="py-20"
+    >
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-12 text-center">
           <p className="mb-3 text-sm uppercase tracking-[0.2em] text-(--accent)">
