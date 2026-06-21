@@ -41,10 +41,16 @@ export default function Testimonials() {
                 >
                   <div
                     className="mb-4 flex gap-1 text-[var(--accent)]"
-                    aria-label="5 star review"
+                    role="img"
+                    aria-label="5 out of 5 stars"
                   >
                     {[...Array(5)].map((_, index) => (
-                      <Star key={index} size={18} fill="currentColor" />
+                      <Star
+                        key={index}
+                        size={18}
+                        fill="currentColor"
+                        aria-hidden="true"
+                      />
                     ))}
                   </div>
 
