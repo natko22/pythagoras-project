@@ -23,7 +23,7 @@ export default function WordOfDay() {
 
   return (
     <p
-      className="rounded text-center text-base text-[var(--muted)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)] lg:text-left"
+      className="min-h-12 w-full rounded text-center text-base text-[var(--muted)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)] lg:text-left"
       tabIndex={0}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}

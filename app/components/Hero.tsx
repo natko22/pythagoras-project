@@ -11,7 +11,7 @@ export default function Hero() {
     <section className=" relative overflow-hidden">
       <FloatingLetters />
 
-      <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-12 lg:py-32">
+      <div className="relative mx-auto max-w-7xl px-6 py-12 lg:px-12 lg:py-32">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           {/* Photo */}
           <div className="flex flex-col items-center gap-6 lg:items-start">
