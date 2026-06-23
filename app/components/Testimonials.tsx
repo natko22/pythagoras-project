@@ -9,7 +9,7 @@ export default function Testimonials() {
     <section
       id="testimonials"
       aria-labelledby="testimonials-heading"
-      className="scroll-mt-24 py-20"
+      className="scroll-mt-24 bg-[var(--accent)]/8 py-20"
     >
       {" "}
       <div className="mx-auto max-w-6xl px-6">

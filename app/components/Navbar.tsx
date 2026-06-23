@@ -30,12 +30,18 @@ export default function Navbar() {
           </a>
 
           {/* Desktop Navigation */}
-          <ul className="hidden items-center gap-8 text-sm md:flex">
+          <ul className="hidden items-center gap-8 text-base font-medium md:flex">
             {links.map((link) => (
               <li key={link.label}>
                 <a
                   href={link.href}
-                  className="transition-colors hover:text-[var(--accent)]"
+                  className="
+                    relative pb-1 text-[var(--foreground)] transition-colors
+                    after:absolute after:bottom-0 after:left-0 after:h-[2px]
+                    after:w-0 after:bg-[var(--accent)] after:transition-all
+                    after:duration-300
+                    hover:text-[var(--accent)] hover:after:w-full
+                  "
                 >
                   {link.label}
                 </a>
@@ -57,13 +63,13 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {isOpen && (
           <div className="border-t border-[var(--border)] py-4 md:hidden">
-            <ul className="flex flex-col gap-4">
+            <ul className="flex flex-col gap-4 text-base font-medium">
               {links.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className="block transition-colors hover:text-[var(--accent)]"
+                    className="block text-[var(--foreground)] transition-colors hover:text-[var(--accent)]"
                   >
                     {link.label}
                   </a>

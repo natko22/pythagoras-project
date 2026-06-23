@@ -46,14 +46,11 @@ export default function About() {
                 key={stat.label}
                 className="
                   rounded-2xl
-                  border border-[var(--accent)]/20
-                  bg-gradient-to-br
-                  from-[var(--background)]/50
-                  to-[var(--accent)]/10
+                  border border-[var(--border)]
+                  bg-[var(--background)]
                   p-6
                   text-center
                   shadow-sm
-                  backdrop-blur-md
                   transition-all
                   duration-300
                   hover:-translate-y-1
@@ -62,7 +59,9 @@ export default function About() {
                 "
               >
                 <div className="mb-4 flex justify-center">
-                  <Icon size={28} className="text-[var(--accent)]" />
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--accent)]/10">
+                    <Icon size={24} className="text-[var(--accent)]" />
+                  </div>
                 </div>
 
                 <p className="text-3xl font-semibold">{stat.value}</p>
