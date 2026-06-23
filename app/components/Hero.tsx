@@ -12,9 +12,9 @@ export default function Hero() {
       <FloatingLetters />
 
       <div className="relative mx-auto max-w-7xl px-6 py-12 lg:px-12 lg:py-32">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:items-start">
           {/* Photo */}
-          <div className="flex flex-col items-center gap-6 lg:items-start">
+          <div className="flex justify-center lg:col-start-1 lg:row-start-1 lg:justify-start">
             <div className="w-full max-w-sm lg:max-w-md">
               <Image
                 src="/images/pythagoras.webp"
@@ -27,18 +27,10 @@ export default function Hero() {
                 className="h-auto w-full rounded-3xl object-cover shadow-xl transition-all duration-500 hover:scale-[1.02]"
               />
             </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-            >
-              <WordOfDay />
-            </motion.div>
           </div>
 
           {/* Content */}
-          <div className="mx-auto max-w-2xl space-y-6 text-center lg:mx-0 lg:max-w-none lg:text-left">
+          <div className="mx-auto max-w-2xl space-y-6 text-center lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:mx-0 lg:max-w-none lg:self-center lg:text-left">
             <motion.p
               className="text-sm font-medium uppercase tracking-[0.2em] text-[var(--accent)]"
               initial={{ opacity: 0, y: 12 }}
@@ -106,6 +98,16 @@ export default function Hero() {
               </a>
             </motion.div>
           </div>
+
+          {/* Word of the day — under the photo on desktop, after the buttons on mobile */}
+          <motion.div
+            className="flex justify-center lg:col-start-1 lg:row-start-2 lg:justify-start"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+          >
+            <WordOfDay />
+          </motion.div>
         </div>
       </div>
     </section>
