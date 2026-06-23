@@ -15,7 +15,8 @@ export default function Footer() {
           </p>
 
           <p className="text-sm italic text-white/90">
-            Developed by{" "}
+            Designed and Developed by
+            <br className="sm:hidden" />{" "}
             <a
               href="https://www.chaptersbyanastasia.dev/"
               target="_blank"
