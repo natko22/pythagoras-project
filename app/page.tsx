@@ -5,7 +5,7 @@ import Services from "./components/Services";
 import Testimonials from "./components/Testimonials";
 import Contact from "./components/Contact";
 
-import FadeIn from "./components/FadeIn";
+import FadeIn from "./components/animations/FadeIn";
 
 export default function Home() {
   return (

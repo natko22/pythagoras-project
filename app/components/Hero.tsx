@@ -1,25 +1,60 @@
+"use client";
+
 import Image from "next/image";
+import { motion, useReducedMotion } from "motion/react";
 import { professor } from "../data/professor";
 
 export default function Hero() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
-    <section className="bg-[var(--background)]">
-      <div className="mx-auto max-w-7xl px-6 py-24 lg:px-12 lg:py-32">
+    <section className="relative overflow-hidden bg-[var(--background)]">
+      <div className="absolute inset-0">
+        <motion.div
+          className="absolute inset-0"
+          initial={{ scale: 1.08, x: -15, y: -10 }}
+          animate={
+            shouldReduceMotion
+              ? { scale: 1.08, x: -15, y: -10 }
+              : { scale: 1, x: 0, y: 0 }
+          }
+          transition={{
+            duration: 20,
+            repeat: shouldReduceMotion ? 0 : Infinity,
+            repeatType: "mirror",
+            ease: "easeInOut",
+          }}
+        >
+          <Image
+            src="/images/greek-desk.jpeg"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover opacity-50 saturate-[1.2]"
+          />
+        </motion.div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[var(--background)] via-[var(--background)]/70 to-[var(--background)]/10" />
+      </div>
+
+      <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-12 lg:py-32">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           {/* Image */}
-          <div className="flex justify-center">
-            <div className="max-w-sm overflow-hidden rounded-3xl shadow-lg lg:max-w-md">
-              <Image
-                src="/images/pythagoras.webp"
-                alt={professor.hero.imageAlt}
-                width={600}
-                height={700}
-                priority
-                fetchPriority="high"
-                sizes="(max-width: 1024px) 90vw, 600px"
-                className="h-auto w-full object-cover hover:scale-[1.02]
+          <div className="flex justify-center lg:justify-start">
+            <div className="max-w-sm rounded-[28px] bg-[var(--background)] p-3 shadow-xl lg:max-w-md">
+              <div className="overflow-hidden rounded-3xl">
+                <Image
+                  src="/images/pythagoras.webp"
+                  alt={professor.hero.imageAlt}
+                  width={600}
+                  height={700}
+                  priority
+                  fetchPriority="high"
+                  sizes="(max-width: 1024px) 90vw, 600px"
+                  className="h-auto w-full object-cover hover:scale-[1.02]
 transition-all duration-500"
-              />
+                />
+              </div>
             </div>
           </div>
 
@@ -73,16 +108,19 @@ transition-all duration-500"
                 href="#services"
                 className="
                   rounded-xl
-                  border
-                  border-[var(--border)]
+                  border-2
+                  border-[var(--accent)]
+                  bg-[var(--background)]
                   px-6
                   py-3
                   font-medium
                   text-[var(--foreground)]
+                  shadow-sm
                   transition-all
                   duration-300
                   hover:-translate-y-1
-                  hover:bg-[var(--card)]
+                  hover:bg-[var(--accent)]
+                  hover:text-white
                   hover:shadow-md
                 "
               >

@@ -1,8 +1,8 @@
 import { Star } from "lucide-react";
 import { professor } from "../data/professor";
 import { testimonials } from "../data/testimonials";
-import StaggerContainer from "./StaggerContainer";
-import StaggerItem from "./StaggerItem";
+import StaggerContainer from "./animations/StaggerContainer";
+import StaggerItem from "./animations/StaggerItem";
 
 export default function Testimonials() {
   return (

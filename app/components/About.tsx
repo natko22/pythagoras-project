@@ -1,8 +1,22 @@
-import { BookOpen, PenTool, Globe, Users } from "lucide-react";
+import {
+  BookOpen,
+  PenTool,
+  Globe,
+  Users,
+  Sparkles,
+  Languages,
+  Plane,
+  Heart,
+  Star,
+} from "lucide-react";
 
 import { professor } from "../data/professor";
+import StaggerContainer from "./animations/StaggerContainer";
+import StaggerItem from "./animations/StaggerItem";
 
 const icons = [BookOpen, PenTool, Globe, Users];
+
+const timelineIcons = [Sparkles, Languages, Plane, Heart, Star];
 
 export default function About() {
   return (
@@ -32,13 +46,18 @@ export default function About() {
                 key={stat.label}
                 className="
                   rounded-2xl
-                  border border-[var(--border)]
-                  bg-[var(--background)]
+                  border border-[var(--accent)]/20
+                  bg-gradient-to-br
+                  from-[var(--background)]/50
+                  to-[var(--accent)]/10
                   p-6
                   text-center
+                  shadow-sm
+                  backdrop-blur-md
                   transition-all
                   duration-300
                   hover:-translate-y-1
+                  hover:border-[var(--accent)]/40
                   hover:shadow-md
                 "
               >
@@ -55,15 +74,36 @@ export default function About() {
         </div>
 
         {/* Biography */}
-        <div className="mx-auto max-w-4xl">
-          {professor.about.map((paragraph, index) => (
-            <p
-              key={index}
-              className="mb-6 text-lg leading-8 text-[var(--muted)]"
-            >
-              {paragraph}
-            </p>
-          ))}
+        <div className="mx-auto max-w-3xl">
+          <StaggerContainer>
+            <div className="relative">
+              <div className="absolute left-6 top-2 h-[calc(100%-2.5rem)] w-px bg-[var(--border)]" />
+
+              {professor.about.map((paragraph, index) => {
+                const Icon = timelineIcons[index % timelineIcons.length];
+
+                return (
+                  <StaggerItem key={index}>
+                    <div className="relative mb-8 flex gap-5 last:mb-0">
+                      <div
+                        className="
+                          relative z-10 flex h-12 w-12 flex-shrink-0
+                          items-center justify-center rounded-full
+                          border border-[var(--border)] bg-[var(--background)]
+                        "
+                      >
+                        <Icon size={20} className="text-[var(--accent)]" />
+                      </div>
+
+                      <p className="pt-2 text-lg leading-8 text-[var(--muted)]">
+                        {paragraph}
+                      </p>
+                    </div>
+                  </StaggerItem>
+                );
+              })}
+            </div>
+          </StaggerContainer>
         </div>
       </div>
     </section>

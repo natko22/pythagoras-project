@@ -1,10 +1,27 @@
 import { User, Globe, GraduationCap } from "lucide-react";
 
 import { professor } from "../data/professor";
-import StaggerContainer from "./StaggerContainer";
-import StaggerItem from "./StaggerItem";
+import StaggerContainer from "./animations/StaggerContainer";
+import StaggerItem from "./animations/StaggerItem";
 
 const icons = [User, Globe, GraduationCap];
+
+function renderWithHighlights(text: string, highlights: string[]) {
+  const pattern = new RegExp(
+    `(${highlights.map((phrase) => phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})`,
+    "g",
+  );
+
+  return text.split(pattern).map((part, index) =>
+    highlights.includes(part) ? (
+      <span key={index} className="font-semibold text-[var(--accent)]">
+        {part}
+      </span>
+    ) : (
+      part
+    ),
+  );
+}
 
 export default function Services() {
   return (
@@ -42,6 +59,9 @@ export default function Services() {
                   <div
                     className="
                         group
+                        flex
+                        h-full
+                        flex-col
                         rounded-2xl
                         border border-[var(--border)]
                         bg-[var(--background)]
@@ -88,7 +108,10 @@ export default function Services() {
         </StaggerContainer>
 
         <p className="mx-auto mt-12 max-w-4xl text-center text-lg leading-8 text-[var(--muted)]">
-          {professor.servicesSection.conclusion}
+          {renderWithHighlights(
+            professor.servicesSection.conclusion,
+            professor.servicesSection.conclusionHighlights,
+          )}
         </p>
       </div>
     </section>
