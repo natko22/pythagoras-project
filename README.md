@@ -170,17 +170,18 @@ This approach improves:
 
 ### Reusable Animation System
 
-Animations are abstracted into reusable wrappers:
+Animations are abstracted into reusable wrappers, grouped together in their own `components/animations/` folder to keep them clearly separated from page-section components:
 
-- FadeIn
-- StaggerContainer
-- StaggerItem
+- FadeIn — single-element fade + slide-up on scroll into view
+- StaggerContainer — orchestrates timing for animated children
+- StaggerItem — defines the fade + slide-up animation for each staggered child
 
 Benefits:
 
 - Consistent animations
 - Cleaner implementation
 - Easy future expansion
+- Clear separation between reusable animation utilities and page-section components
 
 ---
 
@@ -212,9 +213,11 @@ app/
 │   ├── Contact.tsx
 │   ├── Footer.tsx
 │   ├── EmailCopy.tsx
-│   ├── FadeIn.tsx
-│   ├── StaggerContainer.tsx
-│   └── StaggerItem.tsx
+│   │
+│   └── animations/
+│       ├── FadeIn.tsx
+│       ├── StaggerContainer.tsx
+│       └── StaggerItem.tsx
 │
 ├── data/
 │   ├── professor.ts

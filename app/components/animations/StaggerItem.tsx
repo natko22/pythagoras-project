@@ -9,6 +9,7 @@ type StaggerItemProps = {
 export default function StaggerItem({ children }: StaggerItemProps) {
   return (
     <motion.div
+      className="h-full"
       variants={{
         hidden: {
           opacity: 0,

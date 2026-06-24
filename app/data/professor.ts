@@ -97,6 +97,7 @@ export const professor = {
           "Conversational Greek",
           "Intensive courses for holidays and travel",
           "Greek for partners and family members of Greek speakers",
+          "Tailored intensive courses for moving to Greece, weddings, or specific occasions",
         ],
       },
 
@@ -113,7 +114,13 @@ export const professor = {
     ],
 
     conclusion:
-      "Every lesson is personalised, practical, and engaging, helping you build confidence and make real progress from day one. Whether you want to order a coffee in Athens, communicate with family, pass an exam, or achieve fluency, I can help you reach your goal.",
+      "Every lesson is personalised, practical, and engaging, helping you build confidence and make real progress from day one. Whether you want to order a coffee in Athens, communicate with family, pass an exam, or achieve fluency, I can help you reach your goal. Special package deals are available, along with student discounts, making lessons both flexible and affordable.",
+
+    conclusionHighlights: [
+      "order a coffee in Athens",
+      "Special package deals",
+      "student discounts",
+    ],
   },
   testimonialsSection: {
     eyebrow: "Testimonials",
