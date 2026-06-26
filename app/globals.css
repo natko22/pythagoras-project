@@ -30,3 +30,21 @@ h5,
 h6 {
   font-family: var(--font-heading);
 }
+
+.accent-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) transparent;
+}
+
+.accent-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.accent-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.accent-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--accent);
+  border-radius: 999px;
+}
