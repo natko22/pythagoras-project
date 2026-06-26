@@ -1,23 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
+import { useAutoRotate } from "../hooks/useAutoRotate";
 import { WORD_OF_DAY } from "../data/heroDecorations";
 
 const ROTATE_INTERVAL_MS = 3500;
 
 export default function WordOfDay() {
-  const shouldReduceMotion = useReducedMotion();
-  const [wordIndex, setWordIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-
-  useEffect(() => {
-    if (shouldReduceMotion || isPaused) return;
-    const interval = setInterval(() => {
-      setWordIndex((current) => (current + 1) % WORD_OF_DAY.length);
-    }, ROTATE_INTERVAL_MS);
-    return () => clearInterval(interval);
-  }, [shouldReduceMotion, isPaused]);
+  const { index: wordIndex, setIsPaused } = useAutoRotate(
+    WORD_OF_DAY.length,
+    ROTATE_INTERVAL_MS,
+    true
+  );
 
   const word = WORD_OF_DAY[wordIndex];
 

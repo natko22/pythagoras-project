@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
@@ -61,23 +62,31 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Menu */}
-        {isOpen && (
-          <div className="border-t border-[var(--border)] py-4 lg:hidden">
-            <ul className="flex flex-col gap-4 text-base font-medium">
-              {links.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className="block text-[var(--foreground)] transition-colors hover:text-[var(--accent)]"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="absolute inset-x-0 top-full rounded-b-2xl border-t border-[var(--border)] bg-[var(--card)] px-4 py-3 shadow-lg lg:hidden"
+            >
+              <ul className="flex flex-col gap-1 text-base font-medium">
+                {links.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      onClick={() => setIsOpen(false)}
+                      className="block rounded-lg px-3 py-3 text-[var(--foreground)] transition-colors hover:bg-[var(--accent)]/10 hover:text-[var(--accent)]"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
     </header>
   );
