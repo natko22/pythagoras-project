@@ -1,12 +1,20 @@
 export const professor = {
   name: "Pythagoras",
 
+  fullName: "Pythagoras Eleftheriadis",
+  fullNameGreek: "Πυθαγόρας Ελευθεριάδης",
+
   title: "Greek Language Teacher & Published Author",
 
   intro:
     "Personalised Greek language lessons online worldwide and in person in London.",
 
   email: "Eleftheriadispythagoras@gmail.com",
+
+  socials: {
+    instagram: "https://www.instagram.com/pythagorean_theoremm/",
+    youtube: "https://www.youtube.com/@Pythagorean_theoremm",
+  },
 
   hero: {
     eyebrow: "Learn Greek with Confidence",
