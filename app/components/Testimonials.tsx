@@ -8,9 +8,7 @@ import { professor } from "../data/professor";
 import { testimonials, type Testimonial } from "../data/testimonials";
 
 const ROTATE_INTERVAL_MS = 9000;
-const CARD_WIDTH = 480;
-const GAP = 32;
-const SLOT = CARD_WIDTH + GAP;
+const MAX_CARD_WIDTH = 480;
 const TOTAL = testimonials.length;
 const ANCHOR = TOTAL;
 
@@ -20,7 +18,7 @@ const TRACK = [...testimonials, ...testimonials, ...testimonials];
 
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
-    <article className="flex min-h-[30rem] flex-col rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8">
+    <article className="flex min-h-[30rem] flex-col rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 sm:p-8">
       <div
         className="mb-4 flex gap-1 text-[var(--accent)]"
         role="img"
@@ -96,7 +94,13 @@ export default function Testimonials() {
     return () => clearTimeout(timeout);
   }, [trackPosition, transitionDuration]);
 
-  const offsetX = (containerWidth - CARD_WIDTH) / 2 - trackPosition * SLOT;
+  const cardWidth =
+    containerWidth > 0
+      ? Math.min(MAX_CARD_WIDTH, containerWidth * 0.85)
+      : MAX_CARD_WIDTH;
+  const gap = cardWidth < 360 ? 16 : 32;
+  const slot = cardWidth + gap;
+  const offsetX = (containerWidth - cardWidth) / 2 - trackPosition * slot;
 
   return (
     <section
@@ -121,7 +125,8 @@ export default function Testimonials() {
           onMouseLeave={() => setIsPaused(false)}
         >
           <motion.div
-            className="flex gap-8"
+            className="flex"
+            style={{ gap }}
             animate={{ x: offsetX }}
             transition={{ duration: transitionDuration, ease: "easeInOut" }}
           >
@@ -131,7 +136,7 @@ export default function Testimonials() {
                 <motion.div
                   key={`${testimonial.name}-${i}`}
                   className={`shrink-0 ${isActive ? "drop-shadow-xl" : ""}`}
-                  style={{ width: CARD_WIDTH }}
+                  style={{ width: cardWidth }}
                   animate={{
                     scale: isActive ? 1 : 0.85,
                     opacity: isActive ? 1 : 0.4,
