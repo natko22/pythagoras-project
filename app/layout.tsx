@@ -4,6 +4,7 @@ import "./globals.css";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import { professor } from "./data/professor";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -15,10 +16,76 @@ const lora = Lora({
   variable: "--font-heading",
 });
 
+const siteUrl = "https://greekwithpythagoras.com";
+
+const title = `${professor.fullName} (${professor.fullNameGreek}) | Learn Greek with Confidence`;
+const description = `Personalised Greek language lessons with ${professor.fullName} — ${professor.fullNameGreek}, Greek language teacher and published author. Online worldwide and in person in London.`;
+
 export const metadata: Metadata = {
-  title: "Learn Greek with Confidence",
-  description:
-    "Personalised Greek language lessons online worldwide and in person in London.",
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  keywords: [
+    "Pythagoras Eleftheriadis",
+    "Πυθαγόρας Ελευθεριάδης",
+    "learn Greek",
+    "Greek language teacher",
+    "Greek language tutor",
+    "Greek professor",
+    "Greek author",
+    "published author",
+    "Greek lessons",
+    "Greek lessons London",
+    "Greek lessons online",
+    "online Greek lessons",
+    "Greek lessons Thessaloniki",
+    "Greek teacher Thessaloniki",
+    "Greek teacher London",
+    "private Greek lessons",
+    "Greek for students",
+    "Greek for beginners",
+    "conversational Greek",
+    "Greek tutor for students",
+    "learn Greek online",
+    "Greek language classes",
+  ],
+  alternates: {
+    canonical: siteUrl,
+  },
+  openGraph: {
+    title,
+    description,
+    url: siteUrl,
+    siteName: professor.fullName,
+    locale: "en_GB",
+    type: "profile",
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: professor.hero.imageAlt,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/images/og-image.jpg"],
+  },
+};
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: professor.fullName,
+  alternateName: professor.fullNameGreek,
+  jobTitle: professor.title,
+  url: siteUrl,
+  image: `${siteUrl}/images/pythagoras.webp`,
+  email: professor.email,
+  sameAs: [professor.socials.instagram, professor.socials.youtube],
 };
 
 export default function RootLayout({
@@ -28,6 +95,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+      </head>
       <body className={`${inter.variable} ${lora.variable} antialiased`}>
         <Navbar />
 
