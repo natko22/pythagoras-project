@@ -18,9 +18,9 @@ const TRACK = [...testimonials, ...testimonials, ...testimonials];
 
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
-    <article className="flex min-h-[30rem] flex-col rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 sm:p-8">
+    <article className="flex h-72 flex-col rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 sm:h-auto sm:min-h-[26rem] sm:p-8">
       <div
-        className="mb-4 flex gap-1 text-[var(--accent)]"
+        className="mb-4 flex shrink-0 gap-1 text-[var(--accent)]"
         role="img"
         aria-label="5 out of 5 stars"
       >
@@ -29,11 +29,11 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
         ))}
       </div>
 
-      <blockquote className="mb-6 leading-relaxed text-[var(--muted)]">
+      <blockquote className="accent-scrollbar mb-6 flex-1 overflow-y-auto leading-relaxed text-[var(--muted)] sm:flex-none sm:overflow-visible">
         &quot;{testimonial.review}&quot;
       </blockquote>
 
-      <footer className="mt-auto">
+      <footer className="mt-auto shrink-0">
         <p className="font-semibold">{testimonial.name}</p>
         <p className="text-sm text-[var(--muted)]">{testimonial.country}</p>
       </footer>
@@ -94,9 +94,10 @@ export default function Testimonials() {
     return () => clearTimeout(timeout);
   }, [trackPosition, transitionDuration]);
 
+  const widthRatio = containerWidth < 480 ? 0.92 : 0.85;
   const cardWidth =
     containerWidth > 0
-      ? Math.min(MAX_CARD_WIDTH, containerWidth * 0.85)
+      ? Math.min(MAX_CARD_WIDTH, containerWidth * widthRatio)
       : MAX_CARD_WIDTH;
   const gap = cardWidth < 360 ? 16 : 32;
   const slot = cardWidth + gap;
@@ -135,7 +136,7 @@ export default function Testimonials() {
               return (
                 <motion.div
                   key={`${testimonial.name}-${i}`}
-                  className={`shrink-0 ${isActive ? "drop-shadow-xl" : ""}`}
+                  className="shrink-0"
                   style={{ width: cardWidth }}
                   animate={{
                     scale: isActive ? 1 : 0.85,
