@@ -101,10 +101,13 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
       </head>
-      <body className={`${inter.variable} ${lora.variable} antialiased`}>
+      <body
+        id="top"
+        className={`${inter.variable} ${lora.variable} antialiased`}
+      >
         <Navbar />
 
-        <main id="top">{children}</main>
+        <main>{children}</main>
 
         <Footer />
       </body>
