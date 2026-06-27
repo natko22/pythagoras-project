@@ -3,6 +3,10 @@
 ### A modern, warm, and accessible website for a Greek language teacher and published author.
 
 <p align="center">
+  <img src="public/images/social-icon.webp" alt="Pythagoras - Greek Language Teacher & Published Author" width="600" />
+</p>
+
+<p align="center">
 
 <img src="https://img.shields.io/badge/NEXT.JS-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" />
 
