@@ -1,6 +1,6 @@
 # 🇬🇷 Greek Language Teacher Website
 
-### A modern educational website designed for a Greek language teacher and published author.
+### A modern, warm, and accessible website for a Greek language teacher and published author.
 
 <p align="center">
 
@@ -14,187 +14,72 @@
 
 <img src="https://img.shields.io/badge/LUCIDE ICONS-6B5D4E?style=for-the-badge" />
 
-</p>
-
-<p align="center">
-
-<img src="https://img.shields.io/badge/GREEK LANGUAGE-7D8A67?style=for-the-badge" />
-
-<img src="https://img.shields.io/badge/PERSONALISED LEARNING-3F3428?style=for-the-badge" />
-
-<img src="https://img.shields.io/badge/RESPONSIVE DESIGN-6B5D4E?style=for-the-badge" />
-
-<img src="https://img.shields.io/badge/ACCESSIBLE UI-65704F?style=for-the-badge" />
-
 <img src="https://img.shields.io/badge/VERCEL DEPLOYED-8B7355?style=for-the-badge" />
 
 </p>
 
 ---
 
-## 📖 About The Project
+## 📖 About the Project
 
-This project is a modern, responsive website built for a professional Greek language teacher and published author.
+Most language-teacher websites feel like a wall of text. This one doesn't.
 
-The goal was to create a warm, welcoming, and trustworthy online presence that reflects both academic expertise and an engaging teaching style.
-
-Unlike traditional educational websites that often feel rigid and text-heavy, this project focuses on:
-
-- Personal connection
-- Clear communication
-- Elegant design
-- Accessibility
-- Smooth user experience
-- Mobile-first responsiveness
-
-The website allows prospective students to learn about the teacher, explore available lessons, read testimonials, and easily get in touch.
+It's built around a simple idea: lead with personality and trust, not paragraphs. Visitors get a warm introduction, a clear sense of what lessons look like, real testimonials, and an easy way to get in touch — all wrapped in a calm, editorial design with subtle motion throughout.
 
 ---
 
 ## ✨ Features
 
-### Navigation
-
-- Sticky navigation bar
-- Responsive mobile menu
-- Smooth scrolling between sections
-
-### Hero Section
-
-- Professional introduction
-- Key teaching highlights
-- Clear call-to-action buttons
-
-### About Section
-
-- Professional statistics
-- Academic background
-- Teaching experience overview
-
-### Why Choose Me
-
-- Personal teaching philosophy
-- Student-focused approach
-- Engaging visual presentation with icons
-
-### Lessons & Services
-
-- Categorised lesson offerings
-- Interactive service cards
-- Responsive grid layout
-
-### Testimonials
-
-- Student reviews
-- Hover interactions
-- Scroll-triggered animations
-
-### Contact
-
-- Email contact CTA
-- Copy-to-clipboard functionality
-- Accessible interactions
-
-### User Experience
-
-- Smooth scrolling
-- Hover animations
-- Micro-interactions
-- Mobile-first design
-- Responsive layouts
+- 🧭 **Sticky navbar** with an animated mobile dropdown that overlays the page instead of pushing content down
+- 🎬 **Animated hero** with floating Greek letters and a rotating "Word of the Day" widget
+- 📊 **Timeline-style bio** and stat cards in the About section
+- 🗂️ **Categorised services** with data-driven highlighted text
+- 💬 **Auto-rotating testimonials carousel** — a coverflow-style slider with peeking side cards, pause-on-hover, and full keyboard/reduced-motion support
+- 📧 **One-click email copy** on the Contact section
+- 🌍 **Full SEO setup** — Open Graph/Twitter cards, JSON-LD structured data, sitemap, and robots.txt
+- ♿ **Accessible by default** — semantic HTML, ARIA labels, visible focus states, and respect for `prefers-reduced-motion`
 
 ---
 
 ## 🛠 Tech Stack
 
-### Frontend
-
-- Next.js 15
-- React
-- TypeScript
-
-### Styling
-
-- Tailwind CSS 4
-- CSS Variables (Design System)
-
-### Animation
-
-- Motion
-
-### Icons
-
-- Lucide React
-
-### Deployment
-
-- Vercel
+| | |
+|---|---|
+| ⚡ **Next.js 15** (App Router) | Framework |
+| 🔷 **TypeScript** | Type safety |
+| 🎨 **Tailwind CSS 4** | Styling, via CSS variables as a design system |
+| 🎬 **Motion** | Animation |
+| 🪄 **Lucide React** | Icons |
+| ▲ **Vercel** | Hosting & deployment |
 
 ---
 
 ## 🧠 Architecture Decisions
 
-### Data-Driven Content
+### Data-driven content
 
-All content is stored in dedicated data files instead of being hardcoded inside components.
+Every section pulls its text from `app/data/professor.ts` and `app/data/testimonials.ts` rather than hardcoding copy inside components — so updating a sentence never means touching JSX.
 
-Benefits:
+### Custom hook: `useAutoRotate`
 
-- Easier maintenance
-- Better scalability
-- Cleaner components
-- Content can be updated without touching UI logic
+Both the Word of the Day widget and the testimonials carousel need the same thing: advance on a timer, pause on hover, and resume without losing progress. Instead of duplicating that logic, it lives once in [`app/hooks/useAutoRotate.ts`](app/hooks/useAutoRotate.ts):
 
----
+- Tracks *remaining* time on pause (via `setTimeout` + a ref), so hovering and un-hovering resumes the countdown instead of restarting it
+- Optionally respects `prefers-reduced-motion` per consumer, since not every auto-rotating element should behave identically
+- Returns `{ index, setIndex, isPaused, setIsPaused }` — each component wires up its own hover/focus handlers and interval length
 
-### Component-Based Structure
+The testimonials carousel builds on top of this with its own "shortest path" sliding logic — when wrapping from the last testimonial back to the first, it slides one step forward through a cloned copy of the array rather than sweeping backward across every card.
 
-The application is built using reusable components:
+### Reusable animation system
 
-- Navbar
-- Hero
-- About
-- WhyChooseMe
-- Services
-- Testimonials
-- Contact
-- Footer
+Visual animation wrappers live separately from this logic, grouped in `components/animations/`:
 
-This approach improves:
-
-- Readability
-- Reusability
-- Maintainability
-
----
-
-### Reusable Animation System
-
-Animations are abstracted into reusable wrappers, grouped together in their own `components/animations/` folder to keep them clearly separated from page-section components:
-
-- FadeIn — single-element fade + slide-up on scroll into view
-- StaggerContainer — orchestrates timing for animated children
-- StaggerItem — defines the fade + slide-up animation for each staggered child
-
-Benefits:
-
-- Consistent animations
-- Cleaner implementation
-- Easy future expansion
-- Clear separation between reusable animation utilities and page-section components
-
----
+- `FadeIn` — fade + slide-up on scroll into view
+- `StaggerContainer` / `StaggerItem` — orchestrated staggered reveals for lists of children
 
 ### Accessibility
 
-The project includes:
-
-- Semantic HTML
-- Accessible navigation
-- Keyboard-friendly interactions
-- ARIA labels
-- Visible focus states
-- Responsive typography
+Auto-rotating content (Word of the Day, testimonials) always offers a way to pause or jump directly to an item — never purely automatic with no escape. Decorative-only elements (floating Greek letters) are marked `aria-hidden`. Everything respects the OS-level reduced-motion setting.
 
 ---
 
@@ -213,67 +98,58 @@ app/
 │   ├── Contact.tsx
 │   ├── Footer.tsx
 │   ├── EmailCopy.tsx
+│   ├── WordOfDay.tsx
 │   │
 │   └── animations/
 │       ├── FadeIn.tsx
 │       ├── StaggerContainer.tsx
-│       └── StaggerItem.tsx
+│       ├── StaggerItem.tsx
+│       └── FloatingLetters.tsx
+│
+├── hooks/
+│   └── useAutoRotate.ts
 │
 ├── data/
 │   ├── professor.ts
-│   └── testimonials.ts
+│   ├── testimonials.ts
+│   └── heroDecorations.ts
 │
 ├── globals.css
 ├── layout.tsx
-└── page.tsx
+├── page.tsx
+├── sitemap.ts
+├── robots.ts
+├── icon.png
+└── apple-icon.png
 ```
+
+---
+
+## 🔍 SEO & Discoverability
+
+- Metadata (title, description, keywords) includes the teacher's name in both English and Greek
+- Open Graph & Twitter card images for clean link previews on WhatsApp, Facebook, etc.
+- JSON-LD `Person` structured data with social links (`sameAs`)
+- Auto-generated `sitemap.xml` and `robots.txt` via Next.js file conventions
+- Custom favicon and apple-touch-icon (no default framework branding)
 
 ---
 
 ## 🚀 Getting Started
 
-### Clone the repository
-
 ```bash
 git clone <repository-url>
-```
-
-### Install dependencies
-
-```bash
 npm install
-```
-
-### Run development server
-
-```bash
 npm run dev
 ```
 
-Open:
-
-```text
-http://localhost:3000
-```
-
----
-
-## 📱 Responsive Design
-
-The website is fully optimized for:
-
-- Mobile phones
-- Tablets
-- Laptops
-- Desktop screens
+Then open [http://localhost:3000](http://localhost:3000).
 
 ---
 
 ## 🌍 Deployment
 
-The project is deployed using Vercel.
-
-Production builds are automatically generated when changes are pushed to the connected GitHub repository.
+Deployed on Vercel — pushing to the connected GitHub repository triggers an automatic production build.
 
 ```bash
 npm run build
@@ -281,23 +157,6 @@ npm run build
 
 ---
 
-## 🎯 Project Goals
-
-This project was built to demonstrate:
-
-- Modern React development
-- Next.js App Router architecture
-- TypeScript best practices
-- Component-driven design
-- Responsive UI development
-- Accessibility principles
-- Clean code organization
-- Reusable animation patterns
-
----
-
 ## 👨‍💻 Author
 
-Designed and developed using Next.js, TypeScript, Tailwind CSS, Motion, and Lucide Icons.
-
-Built as a modern, maintainable, and accessible educational website.
+Designed and developed by [Anastasia Tsapanidou Kornilaki](https://www.chaptersbyanastasia.dev/) using Next.js, TypeScript, Tailwind CSS, Motion, and Lucide Icons.
